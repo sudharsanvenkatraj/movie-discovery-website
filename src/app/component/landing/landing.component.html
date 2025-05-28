@@ -21,13 +21,9 @@
     </div>
     <div class="d-flex gap-2 align-items-center">
         <div class="input-group wid-350">
-            <span class="input-group-text bg-white px-2 " id="basic-addon1">
-                <span class="material-symbols-outlined">
-                    search
-                </span>
-            </span>
-            <input type="text" class="form-control border-start-0 ps-0" placeholder="Search Movies or Actors...."
-                aria-describedby="basic-addon1" (keyup)="filterResults($event)">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Movies or Actors..."
+                (keyup)="filterResults($event)" aria-label="Search">
+
         </div>
     </div>
 </div>
@@ -35,52 +31,43 @@
 <div class="container" *ngIf="!loading">
     <h2 class="section-header">{{heading}}</h2>
     <div class="actor-details" *ngIf="isSearching && actorDetailsList.length > 0">
-        <h3>Actor:</h3>
-        <div class="row mx-0" *ngFor="let actor of actorDetailsList">
-            <div class="movie-img-section mb-2 col-4 px-0">
-                <div class="actor-details">
+        <h3>Actor & Actress:</h3>
 
-                    <div class="row mx-0">
-                        <div class="movie-img-section mb-2 col-4 px-0">
-                            <span *ngIf="actor.profile_path !== null">
-                                <img src="https://media.themoviedb.org/t/p/w220_and_h330_face{{actor.profile_path}}"
-                                    alt="Actor-img" class="movie-img">
-                            </span>
-                            <span *ngIf="actor.profile_path === null">
-                                <img src="imagenotfound.jpg" alt="Actor-img" class="movie-img">
-                            </span>
-                        </div>
-                        <div class="col-8">
-                            <h6>Actor name comes here </h6>
-                            <p>Lorem Ipsum has been the industry'ssss standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen
-                                book.
-                                It has survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining
-                                essentially unchanged.</p>
+
+        <div class="container mt-4">
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3" *ngFor="let actor of actorDetailsList">
+                    <div class="card shadow-sm p-2 text-center card-max-hieight">
+
+                        <span *ngIf="actor.profile_path !== null">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face{{actor.profile_path}}"
+                                alt="Profile image" class="rounded-circle mx-auto d-block mt-3 image-circle">
+                        </span>
+                        <span *ngIf="actor.profile_path === null">
+                            <img src="imagenotfound.jpg" alt="Profile image"
+                                class="rounded-circle mx-auto d-block mt-3 image-circle" alt="Actor-img">
+                        </span>
+
+                        <div class="card-body">
+                            <p class="card-text text-muted">Original Name: <span class="card-title font-head">
+                                    {{actor.original_name}}</span></p>
+                            <p class="card-text text-muted"> {{(actor.gender === 1)?'Actress':'Actor'}}</p>
+                            <p class="card-text text-muted">popularity: {{actor.popularity | number:'1.2-2'}}</p>
+                            <p class="card-text text-muted moviesfont">Movies: <span class="lenthtrin"
+                                    *ngFor="let item of actor.known_for; let last = last">{{item.original_name ||
+                                    item.title ||
+                                    item.original_title}}<span *ngIf="!last" class="sepration-sym">| </span></span>
+                            </p>
                         </div>
                     </div>
-                    <hr class="divider">
-                    <h5>Movies</h5>
                 </div>
             </div>
-            <div class="col-8 heading-sepration">
-                <h5> Name: {{actor.name}} </h5>
-                <h5>Original Name: {{actor.original_name}}</h5>
-                <h5>Profession: {{(actor.gender === 1)?'Actress':'Actor'}}</h5>
-                <h5>popularity: {{actor.popularity | number:'1.2-2'}}</h5>
-                <h5>Movies :</h5>
-                <ul class="list-unstyled d-flex gap-3 p-0">
-                    <li></li>
-                    <li class="d-flex gap-1" *ngFor="let item of actor.known_for; let last = last">
-                        <a [routerLink]="['/details', item.id]">{{item.original_name || item.title ||
-                            item.original_title}} </a><span *ngIf="!last" class="sepration-sym">| </span>
-                    </li>
-                </ul>
-            </div>
         </div>
+
+
+
         <hr class="divider">
-        <h3>Movies:</h3>
+        <h3 *ngIf="movieList.length > 0">Movies:</h3>
     </div>
     <div class="d-flex gap-4 flex-wrap item-aligmnent-row">
         <div class="movie-card" *ngFor="let item of movieList;let i = index;">
