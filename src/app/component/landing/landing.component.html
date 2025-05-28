@@ -69,33 +69,44 @@
         <hr class="divider">
         <h3 *ngIf="movieList.length > 0">Movies:</h3>
     </div>
-    <div class="d-flex gap-4 flex-wrap item-aligmnent-row">
-        <div class="movie-card" *ngFor="let item of movieList;let i = index;">
-            <div class="movie-img-section mb-2">
-                <a [routerLink]="['/details', item.id]">
-                    <span *ngIf="item.poster_path !== null">
-                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face{{item.poster_path}}"
-                            alt="Actor-img" class="movie-img">
-                    </span>
-                    <span *ngIf="item.poster_path === null">
-                        <img src="imagenotfound.jpg" alt="Actor-img" class="movie-img">
-                    </span>
-                </a>
-                <div class="rating-detail">
+    <div>
+        <div *ngIf="movieList.length > 0">
+            <div class="d-flex gap-4 flex-wrap item-aligmnent-row">
+                <div class="movie-card" *ngFor="let item of movieList;let i = index;">
+                    <div class="movie-img-section mb-2">
+                        <a [routerLink]="['/details', item.id]">
+                            <span *ngIf="item.poster_path !== null">
+                                <img src="https://media.themoviedb.org/t/p/w220_and_h330_face{{item.poster_path}}"
+                                    alt="Actor-img" class="movie-img">
+                            </span>
+                            <span *ngIf="item.poster_path === null">
+                                <img src="imagenotfound.jpg" alt="Actor-img" class="movie-img">
+                            </span>
+                        </a>
+                        <div class="rating-detail">
 
-                    <p class="text-white text-center"> {{item.title}}</p>
-                    <span class="d-flex gap-4">
-                        <p class="text-center text-white"> IMDB: {{item.vote_average | number:'1.2-2'}}/10</p>
-                        <p class="text-white  rel-date-alignment"> Released on: {{item.release_date | date}}</p>
-                    </span>
+                            <p class="text-white text-center"> {{item.title}}</p>
+                            <span class="d-flex gap-4">
+                                <p class="text-center text-white"> IMDB: {{item.vote_average | number:'1.2-2'}}/10</p>
+                                <p class="text-white  rel-date-alignment"> Released on: {{item.release_date | date}}</p>
+                            </span>
+                        </div>
+
+                        <button class="btn py-2 wishlist-btn" mat-icon-button (click)="toggleWishlist(item.id, item)">
+                            <mat-icon [ngStyle]="{'color':item.isclicked? 'red' : 'white'}">{{ item.isclicked ?
+                                'favorite' :
+                                'favorite_border' }}</mat-icon>
+                        </button>
+                    </div>
+
                 </div>
-
-                <button class="btn py-2 wishlist-btn" mat-icon-button (click)="toggleWishlist(item.id, item)">
-                    <mat-icon [ngStyle]="{'color':item.isclicked? 'red' : 'white'}">{{ item.isclicked ? 'favorite' :
-                        'favorite_border' }}</mat-icon>
-                </button>
             </div>
-
         </div>
+        <div *ngIf="movieList.length == 0">
+            <h4 class="text-danger d-flex gap-4 flex-wrap item-aligmnent-row">
+                No result found. </h4>
+        </div>
+
     </div>
+
 </div>

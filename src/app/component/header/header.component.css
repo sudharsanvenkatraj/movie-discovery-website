@@ -81,3 +81,8 @@ a:focus {
     margin: 2em;
 }
 
+.align-home-icon{
+        position: relative;
+    top: 1em;
+    cursor: pointer;
+}
