@@ -1,4 +1,6 @@
-# Movie Discovery
+# JkTechFrontendApplication - Movie Discovery
+
+## Application Overview
 
 Movie Discovery is a responsive web application that helps users decide “What Should I Watch Tonight?” by browsing curated movie suggestions, searching for titles or actors, and managing a wishlist of favorite movies.
 
@@ -12,13 +14,11 @@ Movie Discovery is a responsive web application that helps users decide “What 
 - Responsive design for desktop and mobile
 - Angular SSR (Server-Side Rendering) support
 
-## Tech Stack
+## Technical Details
 
-- [Angular](https://angular.io/) 17+
-- [Angular Material](https://material.angular.io/)
-- [Express](https://expressjs.com/) (for SSR)
-- [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api)
-- TypeScript
+- **Angular Version**: 19
+- **Node.js Version**: 22.x (recommended)
+- **Styling**: Angular Material vs Bootstrap 5.1.3 CSS for responsive design
 
 ## Get a TMDB API Key 
 For the current project, I have used a Bearer token.
@@ -46,8 +46,9 @@ For the current project, I have used a Bearer token.
 
 ### Prerequisites
 
-- Node.js (v18+ recommended)
-- npm
+- Node.js (v18.x recommended)
+- npm (v8.x or later)
+- Angular CLI (v19)
 
 ### Installation
 
@@ -62,16 +63,25 @@ For the current project, I have used a Bearer token.
     npm install
     ```
 
-### Development Server
+### Development server
 
-Start the Angular development server:
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-```sh
-ng serve
-```
+### Code scaffolding
 
-Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser. The app will reload automatically if you change any source files.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ### Running Unit Tests
 
@@ -119,7 +129,7 @@ src/
 
 ### API Configuration
 
-API keys and endpoints are configured in [`src/environments/environment.development.ts`](src/environments/environment.development.ts).
+API keys, TMDB token and endpoints are configured in [`src/environments/environment.development.ts`](src/environments/environment.development.ts).
 
 
 
