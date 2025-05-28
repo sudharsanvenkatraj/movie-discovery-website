@@ -7,7 +7,7 @@
     <img *ngIf="movieDetail.backdrop_path"
         src="https://media.themoviedb.org/t/p/w220_and_h330_face{{movieDetail.backdrop_path}}" alt="movie-img"
         class="movie-bg-img">
-    <img *ngIf="!movieDetail.backdrop_path" src="assets/images/imagenotfound.jpg" alt="Actor-img" class="movie-bg-img">
+    <img *ngIf="!movieDetail.backdrop_path" src="imagenotfound.jpg" alt="Actor-img" class="movie-bg-img">
     <div class="poster-img-overlay">
         <div class="container d-flex gap-3 mt-4">
             <div class="movie-card">
@@ -15,7 +15,7 @@
                     <img *ngIf="movieDetail.poster_path"
                         src="https://media.themoviedb.org/t/p/w220_and_h330_face{{movieDetail.poster_path}}"
                         alt="movie-img" class="movie-img">
-                    <img *ngIf="!movieDetail.poster_path" src="assets/images/imagenotfound.jpg" alt="movie-img"
+                    <img *ngIf="!movieDetail.poster_path" src="imagenotfound.jpg" alt="movie-img"
                         class="movie-img">
                 </div>
             </div>
