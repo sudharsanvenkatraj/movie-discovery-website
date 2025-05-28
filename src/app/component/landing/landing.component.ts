@@ -1,8 +1,8 @@
-import {  Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TmdbServiceTsService } from '../../core/services/tmdb.service.ts.service';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {  RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,12 +19,12 @@ export interface Movie {
   overview: string;
   popularity: number;
   poster_path: string | null;
-  release_date: string; 
+  release_date: string;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
-  isclicked?: boolean; 
+  isclicked?: boolean;
 }
 
 @Component({
@@ -50,8 +50,8 @@ export class LandingComponent {
   actorDetailsList: any = [];
   isSearching: boolean = false;
   heading: string = "";
-  
-  constructor(private tmdbServiceTsService: TmdbServiceTsService) {}
+
+  constructor(private tmdbServiceTsService: TmdbServiceTsService) { }
 
   ngOnInit() {
     this.getTrendingMovies();
@@ -61,6 +61,7 @@ export class LandingComponent {
     this.isSearching = false;
     this.tmdbServiceTsService.getTrendingMovies().subscribe({
       next: (res) => {
+        this.loading = false;
         setTimeout(() => {
           this.movieList = res.results.map((item: Movie) => {
             item.isclicked = false
@@ -74,8 +75,6 @@ export class LandingComponent {
               item.isclicked = existingArraylust.some((movie: Movie) => movie.id === item.id);
             });
           }
-
-          this.loading = false;
         }, 1000)
       },
       error: (e) => console.error(e),
@@ -108,7 +107,7 @@ export class LandingComponent {
     this.tmdbServiceTsService.getMovieDetails(genres_id).subscribe({
       next: (res) => {
         setTimeout(() => {
-
+          this.loading = false;
           this.movieList = res.results.map((item: Movie) => {
             item.isclicked = false
             return item;
@@ -121,8 +120,6 @@ export class LandingComponent {
               item.isclicked = existingArraylust.some((movie: Movie) => movie.id === item.id);
             });
           }
-
-          this.loading = false;
         }, 1000)
       },
       error: (e) => console.error(e),
@@ -142,9 +139,9 @@ export class LandingComponent {
   getActorList(movie: any) {
     this.tmdbServiceTsService.getActorDetails(movie.target.value.toLowerCase()).subscribe({
       next: (res) => {
+        this.loading = false;
         this.actorDetailsList = res.results.filter((item: any) => item.known_for_department === 'Acting');
         this.heading = `Results found for actors:   ${(this.actorDetailsList.length > 0) ? this.actorDetailsList.length : 'N/A'} and movies:   ${(this.movieList.length > 0) ? this.movieList.length : 'N/A'}`;
-        this.loading = false;
       },
       error: (e) => console.error(e),
       complete: () => console.info('complete')
@@ -154,9 +151,8 @@ export class LandingComponent {
   getMovieList(movie: any) {
     this.tmdbServiceTsService.getMoviesActorDetail(movie.target.value.toLowerCase()).subscribe({
       next: (res) => {
-
-        this.movieList = res.results;
         this.loading = false;
+        this.movieList = res.results;
       },
       error: (e) => console.error(e),
       complete: () => console.info('complete')
