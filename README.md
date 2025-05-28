@@ -55,7 +55,7 @@ For the current project, I have used a Bearer token.
 1. Clone the repository:
     ```sh
     git clone https://github.com/sudharsanvenkatraj/movie-discovery-website
-    cd movie-discovery-website-cicd
+    cd movie-discovery-website
     ```
 
 2. Install dependencies:
