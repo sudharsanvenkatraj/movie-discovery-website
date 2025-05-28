@@ -1,0 +1,68 @@
+<div class="spinner-container">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+</div>
+
+<div class="position-relative mb-3" *ngIf="!loading">
+
+    <img *ngIf="movieDetail.backdrop_path"
+        src="https://media.themoviedb.org/t/p/w220_and_h330_face{{movieDetail.backdrop_path}}" alt="movie-img"
+        class="movie-bg-img">
+    <img *ngIf="!movieDetail.backdrop_path" src="assets/images/imagenotfound.jpg" alt="Actor-img" class="movie-bg-img">
+    <div class="poster-img-overlay">
+        <div class="container d-flex gap-3 mt-4">
+            <div class="movie-card">
+                <div class="movie-img-section mb-2">
+                    <img *ngIf="movieDetail.poster_path"
+                        src="https://media.themoviedb.org/t/p/w220_and_h330_face{{movieDetail.poster_path}}"
+                        alt="movie-img" class="movie-img">
+                    <img *ngIf="!movieDetail.poster_path" src="assets/images/imagenotfound.jpg" alt="movie-img"
+                        class="movie-img">
+                </div>
+            </div>
+            <div>
+                <h3 class="text-white">{{movieDetail.title}}</h3>
+                <div class="moview-rating-detail d-flex gap-3 mb-3 p-1">
+                    <p class="text-center mb-0 text-white"> {{movieDetail.vote_average | number:'1.2-2'}}/10</p>
+                    <p class="text-center mb-0 text-white"> {{movieDetail.vote_count}} - Votes</p>
+                </div>
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <span *ngFor="let item of movieDetail.spoken_languages"
+                        class="lang-chip bk-label-box">{{item.english_name}}</span>
+                </div>
+                <div class="text-white">
+                    <ul class="list-unstyled d-flex gap-3 p-0">
+                        <li>Runtime : {{movieDetail.runtime/60 | number:'1.2-2'}}</li> |
+                        <li class="d-flex gap-1">
+                            <span *ngFor="let item of movieDetail.genres; let last = last">{{item.name}}<span
+                                    *ngIf="!last" class="sepration-sym">,</span></span>
+                        </li> |
+                        <li>{{movieDetail.release_date | date}}</li>
+                    </ul>
+                </div>
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <span class="font-color-css">Production companies:</span><span
+                        *ngFor="let item of movieDetail.production_companies"
+                        class="lang-chip bk-label-box">{{item.name}}</span>
+                </div>
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <span class="font-color-css">Production countries:</span><span
+                        *ngFor="let item of movieDetail.production_countries"
+                        class="lang-chip bk-label-box">{{item.name}}</span>
+                </div>
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <span class="font-color-css">Status:</span><span
+                        class="lang-chip bk-label-box">{{movieDetail.status}}</span>
+                </div>
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <span class="font-color-css">Tagline:</span><span
+                        class="lang-chip bk-label-box">{{movieDetail.tagline}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!loading">
+    <h4>About the Movie</h4>
+    <p>{{movieDetail.overview}}</p>
+</div>

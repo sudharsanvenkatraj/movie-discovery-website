@@ -1,0 +1,56 @@
+.movie-bg-img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+.poster-img-overlay{
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 400px;
+    top: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 30%, rgba(122, 122, 122, 0.77) 90%, rgba(245, 245, 245, 0) 100%);
+}
+.movie-card{
+    width: 240px;
+}
+.movie-img-section{
+    width: 240px;
+    height: 340px;
+    overflow: hidden;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+}
+.movie-img{
+    object-fit: cover;
+    width: 240px;
+    height: 340px;
+        transition: transform 0.5s ease;
+}
+.moview-rating-detail{
+    background-color: #63636387;
+    border-radius: 4px;
+    width: fit-content;
+}
+.lang-chip{
+    background-color: #fff;
+    padding: 2px;
+    border-radius: 2px;
+    font-size: .8rem;
+}
+.spinner-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.font-color-css{
+    color: #ffffff;
+}
+.bk-label-box{
+        background-color: #63636387;
+    border-radius: 4px;
+    width: fit-content;
+color: #ffffff;
+}
